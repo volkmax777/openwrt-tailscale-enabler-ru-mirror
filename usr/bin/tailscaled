@@ -16,7 +16,7 @@ if [ ! -f /tmp/tailscaled ]; then
 
     tailscale_version="1.64.0"
 
-    latest_version=`wget -O- https://pkgs.tailscale.com/stable/ | grep tailscale_ | head -1 | cut -d'_' -f 2`
+    latest_version=`wget -O- https://repo-tailscale.lognex.ru/stable/ | grep tailscale_ | head -1 | cut -d'_' -f 2`
     if [ "$tailscale_version" != "$latest_version" ]; then
         tailscale_version=$latest_version
     fi
@@ -27,7 +27,7 @@ if [ ! -f /tmp/tailscaled ]; then
 
     echo -e "tailscale_${version}/tailscaled" > /tmp/tailscale_${version}_files.txt
 
-    wget -O- https://pkgs.tailscale.com/stable/tailscale_${version}.tgz | tar x -zvf - -C /tmp -T /tmp/tailscale_${version}_files.txt
+    wget -O- https://repo-tailscale.lognex.ru/stable/tailscale_${version}.tgz | tar x -zvf - -C /tmp -T /tmp/tailscale_${version}_files.txt
 
     mv /tmp/tailscale_$version/* /tmp
     rm -rf /tmp/tailscale_${version}*
